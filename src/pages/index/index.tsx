@@ -1,4 +1,4 @@
-import { createSignal } from 'solid-js';
+import { createEffect, createSignal } from 'solid-js';
 
 import './index.less';
 
@@ -14,6 +14,11 @@ export default function Index() {
   //     <text>this is a test</text>
   //   </button>
   // );
+
+  createEffect(() => {
+    console.log(`test:>`, count());
+  });
+
   return (
     <view>
       <view class="class1">
