@@ -1,5 +1,5 @@
 import { Button, Text, View } from '@tarojs/components';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './index.less';
 
 // export default function Index() {
@@ -11,16 +11,3 @@ import './index.less';
 //     </View>
 //   );
 // }
-export default class Index extends React.Component {
-  componentDidShow() {
-    console.log(`test:>componentDidShow`);
-  }
-  render(): React.ReactNode {
-    return (
-      <View className="index">
-        <Text>Hello world !</Text>
-        <Button>click</Button>
-      </View>
-    );
-  }
-}
