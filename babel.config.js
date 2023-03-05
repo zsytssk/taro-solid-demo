@@ -2,9 +2,21 @@
 // https://github.com/NervJS/taro/blob/next/packages/babel-preset-taro/README.md
 module.exports = {
   presets: [
-    ['taro', {
-      framework: 'react',
-      ts: true
-    }]
-  ]
-}
+    // [
+    //   'taro',
+    //   {
+    //     framework: 'react',
+    //     ts: true,
+    //   },
+    // ],
+    '@babel/preset-env',
+    [
+      'babel-preset-solid',
+      {
+        moduleName: '@tarojs/plugin-framework-react/dist/render',
+        generate: 'universal',
+      },
+    ],
+    '@babel/preset-typescript',
+  ],
+};

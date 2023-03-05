@@ -1,26 +1,32 @@
-import { Button, Text, View } from '@tarojs/components';
-import React, { useState } from 'react';
+import { createSignal } from 'solid-js';
+
 import './index.less';
 
-// export default function Index() {
-//   const [state, setState] = useState(0);
-//   return (
-//     <View className="index">
-//       <Text>Hello world {state}!</Text>
-//       <Button onClick={() => setState(state + 1)}>click</Button>
-//     </View>
-//   );
-// }
-export default class Index extends React.Component {
-  componentDidShow() {
-    console.log(`test:>componentDidShow`);
-  }
-  render(): React.ReactNode {
-    return (
-      <View className="index">
-        <Text>Hello world !</Text>
-        <Button>click</Button>
-      </View>
-    );
-  }
+export default function Index() {
+  console.warn(`test:>Index`);
+  const [count, setCount] = createSignal(0);
+
+  setInterval(() => {
+    setCount(count() + 1);
+  }, 1000);
+  // return (
+  //   <button>
+  //     <text>this is a test</text>
+  //   </button>
+  // );
+  return (
+    <view>
+      <view class="class1">
+        <text>this is a test {count()}</text>
+      </view>
+      <button>click</button>
+      <view
+        onClick={() => {
+          console.log(`test:>onclick`);
+        }}
+      >
+        click
+      </view>
+    </view>
+  );
 }
