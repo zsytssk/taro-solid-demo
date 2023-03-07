@@ -11,7 +11,7 @@ export default function App(props) {
     return props.pages;
   };
 
-  global.test1 = document;
+  global.doc = document;
   global.taro = Taro;
 
   return <>{children()}</>;
