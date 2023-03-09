@@ -13,7 +13,9 @@ const config = {
   sourceRoot: 'src',
   outputRoot: 'dist',
   plugins: [taroPlugin],
-
+  alias: {
+    '@': path.resolve(__dirname, '..', 'src'),
+  },
   defineConstants: {},
   copy: {
     patterns: [],

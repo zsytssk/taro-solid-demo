@@ -1,5 +1,6 @@
+// import { Image, View } from '@tarojs/components';
+import { Button, Text, View } from '@tarojs/components';
 import { createSignal, Show } from 'solid-js';
-import { Button, View } from '../../components';
 
 import './index.less';
 
@@ -12,27 +13,12 @@ export default function Index() {
   }, 1000);
 
   return (
-    <view class="class1">
+    <View class="class1">
       <Show when={count() > 5} fallback={<text>{count()} 小于 5</text>}>
-        <input />
-        <text>{count()} is bigger than 5</text>
+        <Button onClick={() => console.log(`test:>1`)}>click</Button>
+        <Text>{count()} is bigger than 5</Text>
       </Show>
-      {/* <text>this is a test {count()}</text> */}
-    </view>
-  );
-  return (
-    <view>
-      <View class="class1">this is a test {count()}</View>
-      {/* <Button>werwer{count()}</Button>
-      <view
-        id="test"
-        class="test1"
-        onTouchStart={() => {
-          console.log(`test:>onclick`);
-        }}
-      >
-        click
-      </view> */}
-    </view>
+      {/* <Image src="https://www.baidu.com/img/pcdoodle_2a77789e1a67227122be09c5be16fe46.png" /> */}
+    </View>
   );
 }
