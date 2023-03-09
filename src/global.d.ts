@@ -56,7 +56,7 @@ declare module '@tarojs/components' {
     /** class 名 */
     class?: string;
     /** 子元素 */
-    children: JSXElement;
+    children?: JSXElement;
   };
   type Components<T> = (props: Props<T>) => JSXElement;
 
