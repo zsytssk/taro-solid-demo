@@ -1,38 +1,30 @@
-import { Image, Swiper, SwiperItem, View } from '@tarojs/components';
-import { Accessor, createEffect, createSignal } from 'solid-js';
+import { Image, Swiper, SwiperItem, Text, View } from '@tarojs/components';
+import classNames from 'classnames';
+import { Accessor, createSignal, For, Show } from 'solid-js';
 import { Renovation } from '../../testData';
 
 import styles from './index.module.less';
 
 type Props = { homeConfig: Accessor<Renovation['home_page'] | undefined> };
 export default function SwiperTop({ homeConfig }: Props) {
-  const [count, setCount] = createSignal(0);
   const [swiperIndex, setSwiperIndex] = createSignal(0);
-
-  setInterval(() => {
-    setCount(count() + 1);
-  }, 1000);
-
-  createEffect(() => {
-    console.log(`test:>homeConfig`, JSON.stringify(homeConfig(), null, 2));
-  });
 
   return (
     <View class={styles.swiperTop}>
-      {count()}
-      {/* {JSON.stringify(homeConfig(), null, 2)} */}
-      {/* {homeConfig()?.topBanner ? (
+      <Show when={homeConfig()?.topBanner}>
         <Swiper
+          current={swiperIndex()}
           circular
           indicatorDots={false}
           autoplay
           duration={100}
           onChange={e => {
+            console.log(`test:>config`, e.detail.current);
             setSwiperIndex(e.detail.current);
           }}
         >
-          {homeConfig()?.topBanner.map((item, index) => {
-            return (
+          <For each={homeConfig()?.topBanner}>
+            {(item, index) => (
               <SwiperItem
                 key={item.customId}
                 onClick={() => {
@@ -43,10 +35,21 @@ export default function SwiperTop({ homeConfig }: Props) {
               >
                 <Image src={item.img} mode="aspectFill" />
               </SwiperItem>
-            );
-          })}
+            )}
+          </For>
         </Swiper>
-      ) : null} */}
+        <View class="dots">
+          <For each={homeConfig()?.topBanner}>
+            {(_item, index) => (
+              <text
+                class={classNames({
+                  active: swiperIndex() === index(),
+                })}
+              />
+            )}
+          </For>
+        </View>
+      </Show>
     </View>
   );
 }
