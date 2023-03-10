@@ -1,0 +1,43 @@
+.swiperTop {
+  :global {
+    position: relative;
+    vertical-align: top;
+    line-height: 0;
+    swiper {
+      width: 375px * 2;
+      height: 221px * 2;
+      overflow: hidden;
+      margin-bottom: -12px * 2;
+
+      swiper-item {
+        display: flex;
+        align-items: center;
+        image {
+          width: 375px * 2;
+          height: 221px * 2;
+        }
+      }
+    }
+    .dots {
+      position: absolute;
+      bottom: 24px * 2;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      text {
+        &:not(:last-child) {
+          margin-right: 8px * 2;
+        }
+        display: inline-block;
+        width: 8px * 2;
+        height: 8px * 2;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 8px * 2;
+        &.active {
+          background-color: #fff;
+        }
+      }
+    }
+  }
+}

@@ -1,28 +1,25 @@
 // import { Image, View } from '@tarojs/components';
-import { Button, Image, Text, View } from '@tarojs/components';
+import { Button, Image, View } from '@tarojs/components';
 import Taro from '@tarojs/taro';
-import { createSignal, Show } from 'solid-js';
+import { createSignal } from 'solid-js';
+import SwiperTop from './components/swiperTop';
 
-import './index.less';
+import styles from './index.module.less';
+import { Renovation, requestData } from './testData';
 
 export default function Index() {
-  console.warn(`test:>Index`);
   const [count, setCount] = createSignal(0);
+  const [data, setData] = createSignal<Renovation>();
+  const homeConfig = () => {
+    return data()?.['home_page'];
+  };
+  requestData().then(res => {
+    setData(res as any);
+  });
 
   return (
-    <View class="class1">
-      {count()}
-      <Button
-        onClick={() => {
-          setCount(count() + 1);
-          if (count() == 5) {
-            Taro.showToast({ title: `count() == 5`, icon: 'none' });
-          }
-        }}
-      >
-        click
-      </Button>
-      <Image src="https://www.baidu.com/img/pcdoodle_2a77789e1a67227122be09c5be16fe46.png" />
+    <View class={styles.index}>
+      <SwiperTop homeConfig={homeConfig} />
     </View>
   );
 }
