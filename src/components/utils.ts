@@ -3,8 +3,14 @@ import { createMemo } from 'solid-js';
 
 export function createComponent(name: string) {
   return (props?) => {
-    const { children, ...otherProps } = props;
-    const childList = createMemo(() => props.children);
-    return h(name, otherProps, childList);
+    const memoProps = createMemo(() => {
+      const { children, ...otherProps } = props;
+      return {
+        children,
+        otherProps,
+      };
+    });
+
+    return h(name, memoProps().otherProps, memoProps().children);
   };
 }

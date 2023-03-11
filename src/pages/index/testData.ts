@@ -44,6 +44,6 @@ export function requestData() {
     setTimeout(() => {
       console.log(`test:>resolve`);
       resolve(home_page_config);
-    }, 100);
+    }, 0);
   });
 }
