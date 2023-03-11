@@ -9,6 +9,12 @@ import styles from './index.module.less';
 import { Renovation, requestData } from './testData';
 
 export default function Index() {
+  const [count, setCount] = createSignal(0);
+
+  setInterval(() => {
+    setCount(count() + 1);
+  }, 1000);
+
   const [data, setData] = createSignal<Renovation>();
 
   const homeConfig = createMemo(() => {
@@ -24,12 +30,13 @@ export default function Index() {
       <SwiperTop homeConfig={homeConfig} />
       <Button
         onClick={() => {
+          console.log(`test:>goto`);
           Taro.navigateTo({
             url: '/pages/menu/index',
           });
         }}
       >
-        goto menu
+        goto menu {count}
       </Button>
       <SwiperBottom homeConfig={homeConfig} />
     </View>

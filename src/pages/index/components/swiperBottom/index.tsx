@@ -12,13 +12,13 @@ export function SwiperBottom({ homeConfig }: Props) {
   const banner = createMemo(() => {
     return homeConfig()?.bottomBanner;
   });
+
   return (
     <View class={styles.swiperBottom}>
       <Show when={banner()}>
         <Swiper
           circular
           indicatorDots={false}
-          autoplay
           duration={100}
           onChange={e => {
             setSwiperIndex(e.detail.current);
