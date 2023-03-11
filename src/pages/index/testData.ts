@@ -42,7 +42,6 @@ const home_page_config = {
 export function requestData() {
   return new Promise(resolve => {
     setTimeout(() => {
-      console.log(`test:>resolve`);
       resolve(home_page_config);
     }, 0);
   });
