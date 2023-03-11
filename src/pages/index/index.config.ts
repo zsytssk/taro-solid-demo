@@ -1,3 +1,6 @@
 export default definePageConfig({
-  navigationBarTitleText: '首页'
-})
+  navigationBarTitleText: '',
+  disableScroll: true,
+  navigationStyle: 'custom',
+  enableShareAppMessage: true,
+});

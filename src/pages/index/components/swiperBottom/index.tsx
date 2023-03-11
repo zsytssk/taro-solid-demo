@@ -1,19 +1,21 @@
 import { Image, Swiper, SwiperItem, View } from '@tarojs/components';
 import classNames from 'classnames';
-import { Accessor, createSignal, For, Show } from 'solid-js';
+import { Accessor, createMemo, createSignal, For, Show } from 'solid-js';
 import { Renovation } from '../../testData';
 
-import styles from './index.module.less';
+import styles from './index.module.scss';
 
 type Props = { homeConfig: Accessor<Renovation['home_page'] | undefined> };
-export default function SwiperTop({ homeConfig }: Props) {
+export function SwiperBottom({ homeConfig }: Props) {
   const [swiperIndex, setSwiperIndex] = createSignal(0);
 
+  const banner = createMemo(() => {
+    return homeConfig()?.bottomBanner;
+  });
   return (
-    <View class={styles.swiperTop}>
-      <Show when={homeConfig()?.topBanner}>
+    <View class={styles.swiperBottom}>
+      <Show when={banner()}>
         <Swiper
-          current={swiperIndex()}
           circular
           indicatorDots={false}
           autoplay
@@ -22,33 +24,33 @@ export default function SwiperTop({ homeConfig }: Props) {
             setSwiperIndex(e.detail.current);
           }}
         >
-          <For each={homeConfig()?.topBanner}>
+          <For each={banner()}>
             {item => (
               <SwiperItem
                 key={item.customId}
                 onClick={() => {
                   if (item.jumpType === 'url') {
-                    //   gotoWebPage(item.params);
+                    // gotoWebPage(item.params);
                   }
                 }}
               >
-                <Image src={item.img} mode="aspectFill" />
+                <Image src={item.img} mode="widthFix" />
               </SwiperItem>
             )}
           </For>
         </Swiper>
-        <View class="dots">
-          <For each={homeConfig()?.topBanner}>
-            {(_item, index) => (
-              <text
-                class={classNames({
-                  active: swiperIndex() === index(),
-                })}
-              />
-            )}
-          </For>
-        </View>
       </Show>
+      <View class="dots">
+        <For each={homeConfig()?.topBanner}>
+          {(_item, index) => (
+            <text
+              class={classNames({
+                active: swiperIndex() === index(),
+              })}
+            />
+          )}
+        </For>
+      </View>
     </View>
   );
 }

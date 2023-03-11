@@ -1,17 +1,20 @@
 // import { Image, View } from '@tarojs/components';
-import { View } from '@tarojs/components';
-import { createSignal } from 'solid-js';
+import { Button, View } from '@tarojs/components';
+import Taro from '@tarojs/taro';
+import { createMemo, createSignal } from 'solid-js';
+import { SwiperBottom } from './components/swiperBottom';
 import SwiperTop from './components/swiperTop';
 
 import styles from './index.module.less';
 import { Renovation, requestData } from './testData';
 
 export default function Index() {
-  const [count, setCount] = createSignal(0);
   const [data, setData] = createSignal<Renovation>();
-  const homeConfig = () => {
+
+  const homeConfig = createMemo(() => {
     return data()?.['home_page'];
-  };
+  });
+
   requestData().then(res => {
     setData(res as any);
   });
@@ -19,6 +22,16 @@ export default function Index() {
   return (
     <View class={styles.index}>
       <SwiperTop homeConfig={homeConfig} />
+      <Button
+        onClick={() => {
+          Taro.navigateTo({
+            url: '/pages/menu/index',
+          });
+        }}
+      >
+        goto menu
+      </Button>
+      <SwiperBottom homeConfig={homeConfig} />
     </View>
   );
 }
