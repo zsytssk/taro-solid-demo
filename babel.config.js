@@ -13,7 +13,7 @@ module.exports = {
     [
       'babel-preset-solid',
       {
-        moduleName: '@tarojs/plugin-framework-react/dist/render',
+        moduleName: '@tarojs/plugin-framework-react/dist/runtime',
         generate: 'universal',
       },
     ],

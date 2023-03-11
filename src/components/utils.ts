@@ -1,16 +1,15 @@
-import { h } from '@tarojs/plugin-framework-react/dist/render';
-import { createMemo } from 'solid-js';
+import { h, memo } from '@tarojs/plugin-framework-react/dist/runtime';
 
 export function createComponent(name: string) {
   return (props?) => {
-    const memoProps = createMemo(() => {
-      const { children, ...otherProps } = props;
-      return {
-        children,
-        otherProps,
-      };
-    });
+    const { children: rawChildren, ...otherProps } = props;
+    let children = rawChildren;
 
-    return h(name, memoProps().otherProps, memoProps().children);
+    const descriptor = Object.getOwnPropertyDescriptor(props, 'children');
+    if (typeof descriptor?.get === 'function') {
+      children = memo(() => props.children);
+    }
+
+    return h(name, otherProps, children);
   };
 }

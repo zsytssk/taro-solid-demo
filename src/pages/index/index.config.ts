@@ -1,6 +1,6 @@
 export default definePageConfig({
   navigationBarTitleText: '',
   disableScroll: true,
-  navigationStyle: 'custom',
+  // navigationStyle: 'custom',
   enableShareAppMessage: true,
 });

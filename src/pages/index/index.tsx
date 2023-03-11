@@ -9,12 +9,6 @@ import styles from './index.module.less';
 import { Renovation, requestData } from './testData';
 
 export default function Index() {
-  const [count, setCount] = createSignal(0);
-
-  setInterval(() => {
-    setCount(count() + 1);
-  }, 1000);
-
   const [data, setData] = createSignal<Renovation>();
 
   const homeConfig = createMemo(() => {
@@ -36,7 +30,7 @@ export default function Index() {
           });
         }}
       >
-        goto menu {count}
+        goto menu
       </Button>
       <SwiperBottom homeConfig={homeConfig} />
     </View>
