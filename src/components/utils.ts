@@ -10,6 +10,9 @@ export function createComponent(name: string) {
     //   children = memo(() => local.children);
     // }
 
+    // return createComponent2(() => {
+    //   return createElement(name);
+    // }, props);
     return h(name, props);
     // return h(name, otherProps, children);
   };
