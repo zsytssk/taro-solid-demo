@@ -1,7 +1,7 @@
 // import { Image, View } from '@tarojs/components';
 import { Button, View } from '@tarojs/components';
 import Taro from '@tarojs/taro';
-import { createEffect, createMemo, createSignal } from 'solid-js';
+import { createMemo, createSignal } from 'solid-js';
 import { SwiperBottom } from './components/swiperBottom';
 import SwiperTop from './components/swiperTop';
 
@@ -9,22 +9,30 @@ import styles from './index.module.less';
 import { Renovation, requestData } from './testData';
 
 export default function Index() {
-  let ref;
-  const [count, setCount] = createSignal(0);
+  const [data, setData] = createSignal<Renovation>();
 
-  console.log(`test:>page:>index`);
+  const homeConfig = createMemo(() => {
+    return data()?.['home_page'];
+  });
 
-  setInterval(() => {
-    setCount(count() + 1);
-  }, 1000);
-
-  createEffect(() => {
-    console.log(`test:>`, ref);
+  requestData().then(res => {
+    setData(res as any);
   });
 
   return (
-    <View class={`test${count()}`} ref={ref}>
-      {count()}
+    <View class={styles.index}>
+      <SwiperTop homeConfig={homeConfig} />
+      <Button
+        onClick={() => {
+          console.log(`test:>goto`);
+          Taro.navigateTo({
+            url: '/pages/menu/index',
+          });
+        }}
+      >
+        goto menu
+      </Button>
+      <SwiperBottom homeConfig={homeConfig} />
     </View>
   );
 }

@@ -1,4 +1,4 @@
-import { Image, Swiper, SwiperItem, View } from '@tarojs/components';
+import { Image, Swiper, SwiperItem, Text, View } from '@tarojs/components';
 import classNames from 'classnames';
 import { Accessor, createSignal, For, Show } from 'solid-js';
 import { Renovation } from '../../testData';
@@ -40,7 +40,7 @@ export default function SwiperTop({ homeConfig }: Props) {
         <View class="dots">
           <For each={homeConfig()?.topBanner}>
             {(_item, index) => (
-              <text
+              <Text
                 class={classNames({
                   active: swiperIndex() === index(),
                 })}

@@ -16,10 +16,6 @@ export default function Menu() {
 
   const interval2 = setInterval(() => {
     setCount1(count1() + 1);
-    onCleanup(() => {
-      clearInterval(interval1);
-      clearInterval(interval2);
-    });
   }, 3000);
 
   createEffect(() => {
