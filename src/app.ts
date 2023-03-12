@@ -7,7 +7,7 @@ export default function App(props) {
   global.doc = document;
 
   createEffect(() => {
-    console.log(`test:>app`);
+    console.log(`test:>app`, props.children());
   });
 
   return props.children;

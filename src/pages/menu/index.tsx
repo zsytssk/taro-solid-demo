@@ -1,41 +1,28 @@
-import { Button, View } from '@tarojs/components';
+import { Button, Text, View } from '@tarojs/components';
 import Taro from '@tarojs/taro';
-import { createEffect, createSignal, onCleanup } from 'solid-js';
+import { createSignal, onCleanup, Show } from 'solid-js';
 
 import styles from './index.module.less';
 
 export default function Menu() {
-  let ref;
   const [count, setCount] = createSignal(0);
-  const [count1, setCount1] = createSignal(0);
-  console.log(`test:>page:>menu`);
 
-  const interval1 = setInterval(() => {
+  const interval = setInterval(() => {
     setCount(count() + 1);
   }, 1000);
 
-  const interval2 = setInterval(() => {
-    setCount1(count1() + 1);
-  }, 3000);
-
-  createEffect(() => {
-    console.log(`test:>count`, count());
-  });
-
-  createEffect(() => {
-    console.log(`test:>count1`, count1());
-  });
-
   onCleanup(() => {
-    clearInterval(interval1);
-    clearInterval(interval2);
+    clearInterval(interval);
   });
 
   return (
-    <View class={styles.menu} ref={ref}>
-      <View class="test2">
-        {count()}---{count1()}
-      </View>
+    <View class={styles.menu}>
+      <Show
+        when={count() > 5}
+        fallback={<Text>{count()} is not big than 5</Text>}
+      >
+        <Text>{count()} is big than 5</Text>
+      </Show>
       <Button onClick={() => Taro.navigateBack()}>back</Button>
     </View>
   );

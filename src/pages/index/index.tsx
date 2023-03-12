@@ -24,13 +24,21 @@ export default function Index() {
       <SwiperTop homeConfig={homeConfig} />
       <Button
         onClick={() => {
-          console.log(`test:>goto`);
           Taro.navigateTo({
             url: '/pages/menu/index',
           });
         }}
       >
         goto menu
+      </Button>
+      <Button
+        onClick={() => {
+          Taro.navigateTo({
+            url: '/pages/test/index',
+          });
+        }}
+      >
+        goto test
       </Button>
       <SwiperBottom homeConfig={homeConfig} />
     </View>
