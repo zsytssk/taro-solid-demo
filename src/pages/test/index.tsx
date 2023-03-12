@@ -1,7 +1,7 @@
 // import { Image, View } from '@tarojs/components';
 import { View } from '@tarojs/components';
 import { TaroNode } from '@tarojs/runtime';
-import { createEffect, createSignal } from 'solid-js';
+import { createSignal, onCleanup } from 'solid-js';
 
 export default function Test() {
   let ref: TaroNode;
@@ -9,12 +9,12 @@ export default function Test() {
 
   console.log(`test:>page:>test`);
 
-  setInterval(() => {
+  const interval = setInterval(() => {
     setCount(count() + 1);
   }, 1000);
 
-  createEffect(() => {
-    console.log(`test:>`, ref);
+  onCleanup(() => {
+    clearInterval(interval);
   });
 
   return (

@@ -1,5 +1,6 @@
 import { createComponent } from './utils';
 
+export const Root = createComponent('root');
 export const View = createComponent('view');
 export const Icon = createComponent('icon');
 export const Progress = createComponent('progress');

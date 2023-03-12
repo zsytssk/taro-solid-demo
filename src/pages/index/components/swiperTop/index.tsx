@@ -1,6 +1,6 @@
 import { Image, Swiper, SwiperItem, Text, View } from '@tarojs/components';
 import classNames from 'classnames';
-import { Accessor, createSignal, For, Show } from 'solid-js';
+import { Accessor, createSignal, For, onCleanup, Show } from 'solid-js';
 import { Renovation } from '../../testData';
 
 import styles from './index.module.less';
@@ -9,11 +9,14 @@ type Props = { homeConfig: Accessor<Renovation['home_page'] | undefined> };
 export default function SwiperTop({ homeConfig }: Props) {
   const [swiperIndex, setSwiperIndex] = createSignal(0);
 
+  console.warn(`test:>SwiperTop`);
+  onCleanup(() => {
+    console.warn(`test:>SwiperTop:>onCleanup`);
+  });
   return (
     <View class={styles.swiperTop}>
       <Show when={homeConfig()?.topBanner}>
         <Swiper
-          current={swiperIndex()}
           circular
           indicatorDots={false}
           autoplay

@@ -1,6 +1,13 @@
 import { Image, Swiper, SwiperItem, View } from '@tarojs/components';
 import classNames from 'classnames';
-import { Accessor, createMemo, createSignal, For, Show } from 'solid-js';
+import {
+  Accessor,
+  createEffect,
+  createMemo,
+  createSignal,
+  For,
+  Show,
+} from 'solid-js';
 import { Renovation } from '../../testData';
 
 import styles from './index.module.scss';
