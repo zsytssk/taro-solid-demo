@@ -5,6 +5,7 @@ import { createEffect, createSignal, onCleanup } from 'solid-js';
 import styles from './index.module.less';
 
 export default function Menu() {
+  let ref;
   const [count, setCount] = createSignal(0);
   const [count1, setCount1] = createSignal(0);
   console.log(`test:>page:>menu`);
@@ -12,10 +13,13 @@ export default function Menu() {
   const interval1 = setInterval(() => {
     setCount(count() + 1);
   }, 1000);
-  createEffect(() => {});
 
   const interval2 = setInterval(() => {
     setCount1(count1() + 1);
+    onCleanup(() => {
+      clearInterval(interval1);
+      clearInterval(interval2);
+    });
   }, 3000);
 
   createEffect(() => {
@@ -32,7 +36,7 @@ export default function Menu() {
   });
 
   return (
-    <View class={styles.menu}>
+    <View class={styles.menu} ref={ref}>
       <View class="test2">
         {count()}---{count1()}
       </View>
