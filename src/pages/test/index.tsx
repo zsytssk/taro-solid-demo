@@ -1,10 +1,11 @@
 // import { Image, View } from '@tarojs/components';
 import { View } from '@tarojs/components';
+import { TaroNode } from '@tarojs/runtime';
 import { createEffect, createSignal } from 'solid-js';
 
 export default function Test() {
-  let ref;
-  const [count, setCount] = createSignal(1);
+  let ref: TaroNode;
+  const [count, setCount] = createSignal(0);
 
   console.log(`test:>page:>test`);
 
@@ -17,9 +18,8 @@ export default function Test() {
   });
 
   return (
-    <View class={`test${count()}`} ref={ref}>
+    <View class={`test${count()}`} ref={ref!}>
       {count()}
     </View>
-    // <View ref={ref}>{count()}</View>
   );
 }
