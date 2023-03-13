@@ -58,6 +58,7 @@ declare module '@tarojs/components' {
         class?: string;
         /** 子元素 */
         children?: JSXElement;
+        classList?: { [key: string]: boolean };
         ref?: JSXElement | ((node: JSXElement) => void);
       };
   type Components<T> = (props: Props<T>) => JSXElement;

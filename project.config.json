@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "minapp-react-test",
+  "projectname": "minapp-solid-test",
   "description": "",
   "appid": "touristappid",
   "setting": {

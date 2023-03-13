@@ -1,10 +1,9 @@
-// import { Image, View } from '@tarojs/components';
 import { View } from '@tarojs/components';
-import { TaroNode } from '@tarojs/runtime';
+import { TaroElement } from '@tarojs/runtime';
 import { createSignal, onCleanup } from 'solid-js';
 
 export default function Test() {
-  let ref: TaroNode;
+  let ref: TaroElement;
   const [count, setCount] = createSignal(0);
 
   console.log(`test:>page:>test`);
@@ -18,8 +17,21 @@ export default function Test() {
   });
 
   return (
-    <View class={`test${count()}`} ref={ref!}>
-      {count()}
+    <View
+      // use:clickOutside={(e) => console.log(`test:>clickOutside`)}
+      onClick={() => {
+        console.log(`test:>onClick`);
+      }}
+    >
+      hei
+      <View
+        ref={ref!}
+        classList={{
+          [`test${count()}`]: true,
+        }}
+      >
+        {count()}
+      </View>
     </View>
   );
 }

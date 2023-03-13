@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "./",
-  "projectname": "minapp-react-test",
+  "projectname": "minapp-solid-test",
   "appid": "wxa41e54ec8eafc25a",
   "setting": {
     "es6": false,
