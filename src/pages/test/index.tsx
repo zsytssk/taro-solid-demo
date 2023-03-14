@@ -1,6 +1,14 @@
 import { View } from '@tarojs/components';
 import { TaroElement } from '@tarojs/runtime';
 import { createSignal, onCleanup } from 'solid-js';
+import {
+  useDidShow,
+  useLoad,
+  useUnload,
+  usePageScroll,
+  useTitleClick,
+  useDidHide,
+} from '../../hooks';
 
 export default function Test() {
   let ref: TaroElement;
@@ -16,6 +24,29 @@ export default function Test() {
     clearInterval(interval);
   });
 
+  useDidShow(() => {
+    console.log(`test:>hooks:>useDidShow`);
+  });
+  useDidHide(() => {
+    console.log(`test:>hooks:>useDidHide`);
+  });
+
+  useLoad(() => {
+    console.log(`test:>hooks:>useLoad`);
+  });
+
+  useUnload(() => {
+    console.log(`test:>hooks:>useUnload`);
+  });
+
+  usePageScroll(() => {
+    console.log(`test:>hooks:>usePageScroll`);
+  });
+
+  useTitleClick(() => {
+    console.log(`test:>hooks:>useTitleClick`);
+  });
+
   return (
     <View
       // use:clickOutside={(e) => console.log(`test:>clickOutside`)}
@@ -23,14 +54,16 @@ export default function Test() {
         console.log(`test:>onClick`);
       }}
     >
-      hei
-      <View
-        ref={ref!}
-        classList={{
-          [`test${count()}`]: true,
-        }}
-      >
-        {count()}
+      <View class="inner" style={{ height: 2000 }}>
+        hei
+        <View
+          ref={ref!}
+          classList={{
+            [`test${count()}`]: true,
+          }}
+        >
+          {count()}
+        </View>
       </View>
     </View>
   );
