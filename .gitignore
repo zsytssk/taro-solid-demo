@@ -1,4 +1,5 @@
 dist/
+dist_alipay/
 deploy_versions/
 .temp/
 .rn_temp/

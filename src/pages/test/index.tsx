@@ -1,6 +1,7 @@
 import { View } from '@tarojs/components';
 import { TaroElement } from '@tarojs/runtime';
-import { createSignal, onCleanup } from 'solid-js';
+import Taro from '@tarojs/taro';
+import { createEffect, createSignal, onCleanup } from 'solid-js';
 import {
   useDidShow,
   useLoad,
@@ -8,13 +9,27 @@ import {
   usePageScroll,
   useTitleClick,
   useDidHide,
+  useReachBottom,
+  useAddToFavorites,
+  useOptionMenuClick,
+  useShareTimeline,
+  useReady,
+  useRouter,
 } from '../../hooks';
 
 export default function Test() {
   let ref: TaroElement;
   const [count, setCount] = createSignal(0);
 
-  console.log(`test:>page:>test`);
+  const router = useRouter();
+
+  console.log(`test:>page:>test`, router());
+
+  createEffect(() => {
+    Taro.showShareMenu?.({
+      withShareTicket: true,
+    });
+  });
 
   const interval = setInterval(() => {
     setCount(count() + 1);
@@ -22,6 +37,10 @@ export default function Test() {
 
   onCleanup(() => {
     clearInterval(interval);
+  });
+
+  useReady(() => {
+    console.log(`test:>hooks:>useReady`);
   });
 
   useDidShow(() => {
@@ -43,8 +62,24 @@ export default function Test() {
     console.log(`test:>hooks:>usePageScroll`);
   });
 
+  useReachBottom(() => {
+    console.log(`test:>hooks:>useReachBottom`);
+  });
+
   useTitleClick(() => {
     console.log(`test:>hooks:>useTitleClick`);
+  });
+
+  useAddToFavorites(() => {
+    console.log(`test:>hooks:>useAddToFavorites`);
+  });
+
+  useOptionMenuClick(() => {
+    console.log(`test:>hooks:>useAddToFavorites`);
+  });
+
+  useShareTimeline(() => {
+    console.log(`test:>hooks:>useShareTimeline`);
   });
 
   return (

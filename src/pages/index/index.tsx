@@ -17,6 +17,7 @@ import { Renovation, requestData } from './testData';
 // import { useAppShow } from '../../hooks/useDidShow';
 import { getPageInstance } from '@tarojs/runtime';
 import { useDidHide } from '../../hooks';
+import { gotoWebPage } from '../webPage/utils';
 
 export default function Index(props) {
   const context = useContext(PageContext);
@@ -74,6 +75,13 @@ export default function Index(props) {
         }}
       >
         goto test
+      </Button>
+      <Button
+        onClick={() => {
+          gotoWebPage('#小程序://喜家德/TAVIzJOYLyPhinj');
+        }}
+      >
+        webPage
       </Button>
       <SwiperBottom homeConfig={homeConfig} />
     </View>

@@ -1,6 +1,24 @@
 const path = require('path');
 const taroPlugin = path.resolve(__dirname, '../script/taroPlugin.ts');
 
+var outputRoot = '';
+switch (process.env.TARO_ENV) {
+  case 'weapp':
+    outputRoot = 'dist';
+    break;
+  case 'alipay':
+    outputRoot = 'dist_alipay';
+    break;
+  case 'h5':
+    outputRoot = 'dist_h5';
+    break;
+  case 'tt':
+    outputRoot = 'dist_tt';
+    break;
+  default:
+    outputRoot = 'dist';
+}
+
 const config = {
   projectName: 'minapp-react-test',
   date: '2023-3-3',
@@ -11,7 +29,7 @@ const config = {
     828: 1.81 / 2,
   },
   sourceRoot: 'src',
-  outputRoot: 'dist',
+  outputRoot: outputRoot,
   plugins: [taroPlugin],
   alias: {
     '@': path.resolve(__dirname, '..', 'src'),

@@ -3091,6 +3091,11 @@ babel-plugin-transform-flow-strip-types@^6.22.0:
     babel-plugin-syntax-flow "^6.18.0"
     babel-runtime "^6.22.0"
 
+babel-plugin-transform-globalthis@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmmirror.com/babel-plugin-transform-globalthis/-/babel-plugin-transform-globalthis-1.0.0.tgz#c6b79252518ee69161c7bd20c489def4fd0b367c"
+  integrity sha512-seMhmU2zaujex1n86fdHn3U4FKEIn1GhzoQ3ifn08W5v1+EyiaLqFVGeFcoQ3ofvtQX3kdiZnDbo50WrH6gWpw==
+
 babel-plugin-transform-imports-api@1.0.0:
   version "1.0.0"
   resolved "https://registry.npmmirror.com/babel-plugin-transform-imports-api/-/babel-plugin-transform-imports-api-1.0.0.tgz#b9076ebfe8da7ed5f3b44be23823500d22c43bc6"
