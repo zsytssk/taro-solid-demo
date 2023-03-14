@@ -21,7 +21,7 @@ switch (env) {
 }
 
 const config = {
-  projectName: 'minapp-react-test',
+  projectName: 'minapp-solid-test',
   date: '2023-3-3',
   designWidth: 750,
   deviceRatio: {

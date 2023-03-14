@@ -1,4 +1,4 @@
-import { h, reactMeta } from '@tarojs/plugin-framework-react/dist/runtime';
+import { h } from '@tarojs/plugin-framework-react/dist/runtime';
 
 export function createComponent(name: string) {
   return (props?) => {

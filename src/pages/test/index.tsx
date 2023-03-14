@@ -1,7 +1,7 @@
 import { View } from '@tarojs/components';
 import { TaroElement } from '@tarojs/runtime';
 import Taro from '@tarojs/taro';
-import { createEffect, createSignal, onCleanup } from 'solid-js';
+import { createEffect, createSignal, getOwner, onCleanup } from 'solid-js';
 import {
   useDidShow,
   useLoad,
@@ -14,16 +14,13 @@ import {
   useOptionMenuClick,
   useShareTimeline,
   useReady,
-  useRouter,
 } from '../../hooks';
 
 export default function Test() {
   let ref: TaroElement;
   const [count, setCount] = createSignal(0);
 
-  const router = useRouter();
-
-  console.log(`test:>page:>test`, router());
+  console.log(`test:>page:>test`, getOwner());
 
   createEffect(() => {
     Taro.showShareMenu?.({

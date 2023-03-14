@@ -1,7 +1,13 @@
 // import { Image, View } from '@tarojs/components';
-import { Button, Image, Text, View } from '@tarojs/components';
+import { Button, View } from '@tarojs/components';
 import Taro from '@tarojs/taro';
-import { createEffect, createMemo, createSignal, onCleanup } from 'solid-js';
+import {
+  createEffect,
+  createMemo,
+  createSignal,
+  getOwner,
+  onCleanup,
+} from 'solid-js';
 import { SwiperBottom } from './components/swiperBottom';
 import SwiperTop from './components/swiperTop';
 
@@ -16,7 +22,7 @@ export default function Index(props) {
   const [data, setData] = createSignal<Renovation>();
   const [count, setCount] = createSignal(0);
 
-  console.log(`test:>page:>index`, props);
+  console.log(`test:>page:>index`, getOwner());
 
   const interval = setInterval(() => {
     setCount(count() + 1);
@@ -42,13 +48,9 @@ export default function Index(props) {
     const inst = getPageInstance(props.tid);
     console.log(`test:>inst`, inst);
   });
-  // useAppShow(() => {
-  //   console.log(`test:>useAppShow`);
-  // });
 
   return (
     <View class={styles.index}>
-      <Text>{count()}</Text>
       <SwiperTop homeConfig={homeConfig} />
       <Button
         onClick={() => {
