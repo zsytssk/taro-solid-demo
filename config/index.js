@@ -1,8 +1,9 @@
 const path = require('path');
 const taroPlugin = path.resolve(__dirname, '../script/taroPlugin.ts');
 
+const env = process.env.TARO_ENV;
 var outputRoot = '';
-switch (process.env.TARO_ENV) {
+switch (env) {
   case 'weapp':
     outputRoot = 'dist';
     break;
@@ -28,13 +29,19 @@ const config = {
     750: 1,
     828: 1.81 / 2,
   },
+
   sourceRoot: 'src',
   outputRoot: outputRoot,
   plugins: [taroPlugin],
   alias: {
     '@': path.resolve(__dirname, '..', 'src'),
   },
-  defineConstants: {},
+  defineConstants:
+    env === 'alipay'
+      ? {
+          globalThis: '""',
+        }
+      : {},
   copy: {
     patterns: [],
     options: {},

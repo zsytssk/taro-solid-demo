@@ -6,11 +6,9 @@ import {
   createMemo,
   createSignal,
   onCleanup,
-  useContext,
 } from 'solid-js';
 import { SwiperBottom } from './components/swiperBottom';
 import SwiperTop from './components/swiperTop';
-import { PageContext } from '@tarojs/plugin-framework-react/dist/runtime';
 
 import styles from './index.module.less';
 import { Renovation, requestData } from './testData';
@@ -20,11 +18,10 @@ import { useDidHide } from '../../hooks';
 import { gotoWebPage } from '../webPage/utils';
 
 export default function Index(props) {
-  const context = useContext(PageContext);
   const [data, setData] = createSignal<Renovation>();
   const [count, setCount] = createSignal(0);
 
-  console.log(`test:>page:>index`, props, context);
+  console.log(`test:>page:>index`, props);
 
   const interval = setInterval(() => {
     setCount(count() + 1);
