@@ -1,12 +1,7 @@
 // import { Image, View } from '@tarojs/components';
-import { Button, Text, View } from '@tarojs/components';
+import { Button, Image, Text, View } from '@tarojs/components';
 import Taro from '@tarojs/taro';
-import {
-  createEffect,
-  createMemo,
-  createSignal,
-  onCleanup,
-} from 'solid-js';
+import { createEffect, createMemo, createSignal, onCleanup } from 'solid-js';
 import { SwiperBottom } from './components/swiperBottom';
 import SwiperTop from './components/swiperTop';
 
@@ -14,8 +9,8 @@ import styles from './index.module.less';
 import { Renovation, requestData } from './testData';
 // import { useAppShow } from '../../hooks/useDidShow';
 import { getPageInstance } from '@tarojs/runtime';
-import { useDidHide } from '../../hooks';
 import { gotoWebPage } from '../webPage/utils';
+import { useDidHide } from '@/hooks';
 
 export default function Index(props) {
   const [data, setData] = createSignal<Renovation>();
