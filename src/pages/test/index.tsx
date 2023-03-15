@@ -1,3 +1,5 @@
+import { ModalManager } from '@/wui/components/Modal';
+import { Modal } from '@/wui/components/Modal/Modal';
 import { View } from '@tarojs/components';
 import { TaroElement } from '@tarojs/runtime';
 import Taro from '@tarojs/taro';
@@ -19,7 +21,7 @@ import {
 export default function Test() {
   let ref: TaroElement;
   const [count, setCount] = createSignal(0);
-
+  const [visible, setVisible] = createSignal(false);
   console.log(`test:>page:>test`, getOwner());
 
   createEffect(() => {
@@ -80,13 +82,13 @@ export default function Test() {
   });
 
   return (
-    <View
-      // use:clickOutside={(e) => console.log(`test:>clickOutside`)}
-      onClick={() => {
-        console.log(`test:>onClick`);
-      }}
-    >
-      <View class="inner" style={{ height: 2000 }}>
+    <View>
+      <View
+        class="inner"
+        onClick={() => {
+          setVisible(true);
+        }}
+      >
         hei
         <View
           ref={ref!}
@@ -97,6 +99,10 @@ export default function Test() {
           {count()}
         </View>
       </View>
+      <Modal visible={visible} onClose={() => setVisible(false)}>
+        <View>this is a modal {count()}</View>
+      </Modal>
+      <ModalManager />
     </View>
   );
 }

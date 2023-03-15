@@ -1,0 +1,153 @@
+.wui-modal-root {
+  &.hide {
+    display: none;
+  }
+  .wui-modal-mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 46%);
+    animation-name: fadeIn;
+    &.hide {
+      animation-name: fadeOut;
+      opacity: 0;
+    }
+  }
+
+  .wui-modal-wrap {
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    z-index: 1000;
+    overflow: auto;
+    outline: 0;
+    background-color: #fff;
+  }
+}
+
+.wui-modal-wrap {
+  &.scale-in {
+    animation-name: scaleIn;
+    &.hide {
+      animation-name: scaleOut;
+      opacity: 0;
+    }
+  }
+  &.fade-in {
+    animation-name: fadeIn;
+    &.hide {
+      animation-name: fadeOut;
+      opacity: 0;
+    }
+  }
+
+  &.slide-bottom-in {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    transform: translate(0, 0);
+    animation-name: slideBottomIn;
+    &.hide {
+      animation-name: slideBottomOut;
+      opacity: 0;
+    }
+  }
+
+  &.slide-right-in {
+    top: 0;
+    bottom: 0;
+    left: auto;
+    right: 0;
+    transform: translate(0, 0);
+    animation-name: slideRightIn;
+
+    &.hide {
+      animation-name: slideBottomOut;
+
+      opacity: 0;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes scaleOut {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+@keyframes slideBottomIn {
+  0% {
+    opacity: 0;
+    transform: translate(0, 100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+@keyframes slideBottomOut {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 100%);
+  }
+}
+@keyframes slideRightIn {
+  0% {
+    opacity: 0;
+    transform: translate(100%, 0%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+@keyframes slideRightOut {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(100%, 0);
+  }
+}

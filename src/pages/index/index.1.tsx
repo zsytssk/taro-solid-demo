@@ -1,13 +1,24 @@
+// import { Image, View } from '@tarojs/components';
 import { Button, View } from '@tarojs/components';
 import Taro from '@tarojs/taro';
-import { createMemo, createSignal, getOwner } from 'solid-js';
+import {
+  createEffect,
+  createMemo,
+  createSignal,
+  getOwner,
+  onCleanup,
+} from 'solid-js';
 import { SwiperBottom } from './components/swiperBottom';
 import SwiperTop from './components/swiperTop';
 
 import styles from './index.module.less';
 import { Renovation, requestData } from './testData';
-import { ModalManager } from '@/wui/components/Modal';
+// import { useAppShow } from '../../hooks/useDidShow';
+import { getPageInstance } from '@tarojs/runtime';
+import { gotoWebPage } from '../webPage/utils';
+import { useDidHide } from '@/hooks';
 import { Modal } from '@/wui/components/Modal/Modal';
+import { ModalManager } from '@/wui/components/Modal';
 
 export default function Index(props) {
   const [data, setData] = createSignal<Renovation>();
@@ -16,12 +27,29 @@ export default function Index(props) {
 
   console.log(`test:>page:>index`, getOwner());
 
+  const interval = setInterval(() => {
+    setCount(count() + 1);
+  }, 1000);
+
+  onCleanup(() => {
+    clearInterval(interval);
+  });
+
+  useDidHide(() => {
+    console.log(`test:>hooks:>useDidHide`);
+  });
+
   const homeConfig = createMemo(() => {
     return data()?.['home_page'];
   });
 
   requestData().then(res => {
     setData(res as any);
+  });
+
+  createEffect(() => {
+    const inst = getPageInstance(props.tid);
+    console.log(`test:>inst`, inst);
   });
 
   return (
@@ -53,7 +81,7 @@ export default function Index(props) {
         showModal
       </Button>
       <SwiperBottom homeConfig={homeConfig} />
-      <Modal visible={visible} onClose={() => setVisible(false)}>
+      <Modal visible={visible}>
         <View>this is a modal</View>
       </Modal>
       <ModalManager />
