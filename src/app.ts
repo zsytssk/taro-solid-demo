@@ -2,6 +2,8 @@ import { document, getPageInstance } from '@tarojs/runtime';
 import Taro from '@tarojs/taro';
 import { useDidShow, useError, useLaunch, usePageNotFound } from './hooks';
 
+import './app.less';
+
 export default function App(props) {
   global.taro = Taro;
   global.doc = document;

@@ -36,6 +36,7 @@ export function ModalManager() {
     if (!curPageId) {
       return [];
     }
+    console.log(`test:>modalMap`, { ...modalMap });
 
     const showAllModals = modalMap[SOW_IN_ALL_PAGE] || [];
     const curPageModals = modalMap[curPageId] || [];
