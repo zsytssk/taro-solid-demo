@@ -1,17 +1,16 @@
 import { Button, View } from '@tarojs/components';
 import Taro from '@tarojs/taro';
-import { createEffect, createMemo, createSignal, getOwner } from 'solid-js';
+import { createMemo, createSignal, getOwner } from 'solid-js';
 import { SwiperBottom } from './components/swiperBottom';
 import SwiperTop from './components/swiperTop';
 
+import { ModalManager } from '@/wui/components/Modal';
+import { Modal } from '@/wui/components/Modal/Modal';
 import styles from './index.module.less';
 import { Renovation, requestData } from './testData';
-import { ModalManager } from '@/wui/components/Modal';
-import { Modal } from '@/wui/components/Modal/Modal.loop';
 
 export default function Index(props) {
   const [data, setData] = createSignal<Renovation>();
-  const [count, setCount] = createSignal(0);
   const [visible, setVisible] = createSignal(false);
 
   console.log(`test:>page:>index`, getOwner());

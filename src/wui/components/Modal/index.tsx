@@ -1,13 +1,6 @@
 import { getCurPageId } from '@/wui/taroUtils/utils';
 import { View } from '@tarojs/components';
-import {
-  createMemo,
-  For,
-  getOwner,
-  JSXElement,
-  onCleanup,
-  untrack,
-} from 'solid-js';
+import { createMemo, For, JSXElement, onCleanup, untrack } from 'solid-js';
 import { createStore } from 'solid-js/store';
 
 type ModalItem = JSXElement;
@@ -38,7 +31,6 @@ export function ModalManager() {
     if (!curPageId) {
       return [];
     }
-    console.log(`test:>modalMap`, { ...modalMap });
 
     const showAllModals = modalMap[SOW_IN_ALL_PAGE] || [];
     const curPageModals = modalMap[curPageId] || [];

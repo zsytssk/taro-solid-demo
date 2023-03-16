@@ -36,10 +36,6 @@ export function Modal({
 }: Props) {
   const show = useDelayShow(visible, transTime);
 
-  createRenderEffect(() => {
-    console.log(`test:>`, show(), visible());
-  });
-
   return renderModal(
     <Show when={show()}>
       <View
