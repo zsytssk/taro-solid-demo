@@ -1,13 +1,6 @@
 import { getCurPageId } from '@/wui/taroUtils/utils';
 import { View } from '@tarojs/components';
-import {
-  createMemo,
-  For,
-  getOwner,
-  JSXElement,
-  onCleanup,
-  untrack,
-} from 'solid-js';
+import { createMemo, For, getOwner, JSXElement, onCleanup } from 'solid-js';
 import { createStore } from 'solid-js/store';
 
 type ModalItem = JSXElement;
@@ -17,18 +10,23 @@ const [modalMap, setModalMap] = createStore<{ [key: string]: ModalItem[] }>({});
 export const SOW_IN_ALL_PAGE = 'SOW_IN_ALL_PAGE';
 export function renderModal(node: ModalItem) {
   const pageId = getCurPageId();
-  const pageList = untrack(() => modalMap[pageId]);
-  if (!pageList) {
-    setModalMap(pageId, [node]);
+  if (!modalMap[pageId]) {
+    setModalMap(pageId, () => [node]);
   } else {
-    setModalMap(pageId, [...pageList, node]);
+    setModalMap(pageId, list => [...list, node]);
   }
-
   onCleanup(() => {
-    setModalMap(pageId, list => list.filter(item => item !== node));
+    removeModal(node, pageId);
   });
 
   return null;
+}
+export function removeModal(node: ModalItem, pageId: string) {
+  let pageItems = modalMap[pageId];
+  if (!pageItems?.length) {
+    return;
+  }
+  setModalMap(pageId, list => list.filter(item => item !== node));
 }
 
 export function ModalManager() {

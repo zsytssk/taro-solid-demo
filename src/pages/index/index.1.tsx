@@ -17,7 +17,7 @@ import { Renovation, requestData } from './testData';
 import { getPageInstance } from '@tarojs/runtime';
 import { gotoWebPage } from '../webPage/utils';
 import { useDidHide } from '@/hooks';
-import { Modal } from '@/wui/components/Modal/Modal';
+import { Modal } from '@/wui/components/Modal/Modal.loop';
 import { ModalManager } from '@/wui/components/Modal';
 
 export default function Index(props) {

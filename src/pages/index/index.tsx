@@ -1,13 +1,13 @@
 import { Button, View } from '@tarojs/components';
 import Taro from '@tarojs/taro';
-import { createMemo, createSignal, getOwner } from 'solid-js';
+import { createEffect, createMemo, createSignal, getOwner } from 'solid-js';
 import { SwiperBottom } from './components/swiperBottom';
 import SwiperTop from './components/swiperTop';
 
 import styles from './index.module.less';
 import { Renovation, requestData } from './testData';
 import { ModalManager } from '@/wui/components/Modal';
-import { Modal } from '@/wui/components/Modal/Modal';
+import { Modal } from '@/wui/components/Modal/Modal.loop';
 
 export default function Index(props) {
   const [data, setData] = createSignal<Renovation>();
@@ -53,7 +53,11 @@ export default function Index(props) {
         showModal
       </Button>
       <SwiperBottom homeConfig={homeConfig} />
-      <Modal visible={visible} onClose={() => setVisible(false)}>
+      <Modal
+        visible={visible}
+        onClose={() => setVisible(false)}
+        className={styles.modal}
+      >
         <View>this is a modal</View>
       </Modal>
       <ModalManager />

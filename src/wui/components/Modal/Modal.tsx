@@ -1,5 +1,5 @@
 import { View } from '@tarojs/components';
-import { Accessor, JSXElement, Show } from 'solid-js';
+import { Accessor, createRenderEffect, JSXElement, Show } from 'solid-js';
 import { renderModal } from '.';
 import { useDelayShow } from './useDelayShow';
 import { floor } from './utils';
@@ -14,7 +14,7 @@ export enum TransitionType {
   /** 从右弹出 */
   SlideRightIn = 'slide-right-in',
   /** 底部向上弹出 */
-  slideBottomIn = 'slide-bottom-in',
+  SlideBottomIn = 'slide-bottom-in',
 }
 export type Props = {
   visible: Accessor<boolean>;
@@ -32,9 +32,13 @@ export function Modal({
   className,
   children: element,
   transTime = 300,
-  transClass = TransitionType.FadeIn,
+  transClass = TransitionType.SlideBottomIn,
 }: Props) {
   const show = useDelayShow(visible, transTime);
+
+  createRenderEffect(() => {
+    console.log(`test:>`, show(), visible());
+  });
 
   return renderModal(
     <Show when={show()}>
