@@ -32,7 +32,7 @@ export function Modal({
   className,
   children: element,
   transTime = 300,
-  transClass = TransitionType.SlideBottomIn,
+  transClass = TransitionType.FadeIn,
 }: Props) {
   const show = useDelayShow(visible, transTime);
 

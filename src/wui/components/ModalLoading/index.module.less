@@ -1,0 +1,42 @@
+.modalLoading {
+  :global {
+    .wui-modal-mask {
+      background-color: transparent;
+    }
+    .wui-modal-wrap {
+      top: calc(50% - 120px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 118px * 2;
+      height: 128px * 2;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px * 1.5;
+      overflow: hidden;
+      flex-direction: column;
+      color: #fff;
+
+      .lds-circle {
+        border: 3px * 2 solid rgba(255, 255, 255, 0.3);
+        border-top-color: #fff;
+        border-radius: 50%;
+        width: 30px * 3;
+        height: 30px * 3;
+        margin-bottom: 10px * 2;
+        :local {
+          animation: spin 1s linear infinite;
+        }
+      }
+      text {
+        font-size: 14px * 2;
+        margin-top: 4px * 2;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

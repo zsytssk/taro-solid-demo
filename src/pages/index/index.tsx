@@ -8,10 +8,12 @@ import { ModalManager } from '@/wui/components/Modal';
 import { Modal } from '@/wui/components/Modal/Modal';
 import styles from './index.module.less';
 import { Renovation, requestData } from './testData';
+import { Spin } from '@/wui/components/Spin/Spin';
 
 export default function Index(props) {
   const [data, setData] = createSignal<Renovation>();
   const [visible, setVisible] = createSignal(false);
+  const [spin, setSpin] = createSignal(true);
 
   console.log(`test:>page:>index`, getOwner());
 
@@ -23,35 +25,41 @@ export default function Index(props) {
     setData(res as any);
   });
 
+  setTimeout(() => {
+    setSpin(false);
+  }, 1000);
+
   return (
     <View class={styles.index}>
-      <SwiperTop homeConfig={homeConfig} />
-      <Button
-        onClick={() => {
-          Taro.navigateTo({
-            url: '/pages/menu/index',
-          });
-        }}
-      >
-        goto menu
-      </Button>
-      <Button
-        onClick={() => {
-          Taro.navigateTo({
-            url: '/pages/test/index',
-          });
-        }}
-      >
-        goto test
-      </Button>
-      <Button
-        onClick={() => {
-          setVisible(true);
-        }}
-      >
-        showModal
-      </Button>
-      <SwiperBottom homeConfig={homeConfig} />
+      <Spin spin={spin}>
+        <SwiperTop homeConfig={homeConfig} />
+        <Button
+          onClick={() => {
+            Taro.navigateTo({
+              url: '/pages/menu/index',
+            });
+          }}
+        >
+          goto menu
+        </Button>
+        <Button
+          onClick={() => {
+            Taro.navigateTo({
+              url: '/pages/test/index',
+            });
+          }}
+        >
+          goto test
+        </Button>
+        <Button
+          onClick={() => {
+            setVisible(true);
+          }}
+        >
+          showModal
+        </Button>
+        <SwiperBottom homeConfig={homeConfig} />
+      </Spin>
       <Modal
         visible={visible}
         onClose={() => setVisible(false)}
