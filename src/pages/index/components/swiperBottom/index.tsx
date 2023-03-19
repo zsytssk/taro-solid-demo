@@ -1,13 +1,6 @@
-import { Image, Swiper, SwiperItem, View } from '@tarojs/components';
+import { Image, Swiper, SwiperItem, Text, View } from '@tarojs/components';
 import classNames from 'classnames';
-import {
-  Accessor,
-  createEffect,
-  createMemo,
-  createSignal,
-  For,
-  Show,
-} from 'solid-js';
+import { Accessor, createMemo, createSignal, For, Show } from 'solid-js';
 import { Renovation } from '../../testData';
 
 import styles from './index.module.scss';
@@ -50,10 +43,10 @@ export function SwiperBottom({ homeConfig }: Props) {
       <View class="dots">
         <For each={homeConfig()?.topBanner}>
           {(_item, index) => (
-            <text
-              class={classNames({
+            <Text
+              classList={{
                 active: swiperIndex() === index(),
-              })}
+              }}
             />
           )}
         </For>

@@ -1,6 +1,13 @@
 import { Image, Swiper, SwiperItem, Text, View } from '@tarojs/components';
 import classNames from 'classnames';
-import { Accessor, createSignal, For, onCleanup, Show } from 'solid-js';
+import {
+  Accessor,
+  createEffect,
+  createSignal,
+  For,
+  onCleanup,
+  Show,
+} from 'solid-js';
 import { Renovation } from '../../testData';
 
 import styles from './index.module.less';
@@ -13,6 +20,11 @@ export default function SwiperTop({ homeConfig }: Props) {
   onCleanup(() => {
     console.warn(`test:>SwiperTop:>onCleanup`);
   });
+
+  createEffect(() => {
+    console.warn(`test:>SwiperTop`);
+  });
+
   return (
     <View class={styles.swiperTop}>
       <Show when={homeConfig()?.topBanner}>
@@ -44,9 +56,9 @@ export default function SwiperTop({ homeConfig }: Props) {
           <For each={homeConfig()?.topBanner}>
             {(_item, index) => (
               <Text
-                class={classNames({
+                classList={{
                   active: swiperIndex() === index(),
-                })}
+                }}
               />
             )}
           </For>

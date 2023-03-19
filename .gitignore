@@ -1,5 +1,6 @@
 dist/
 dist_alipay/
+dist_h5/
 deploy_versions/
 .temp/
 .rn_temp/

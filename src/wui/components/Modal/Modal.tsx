@@ -26,14 +26,15 @@ export type Props = {
   transClass?: TransitionType;
 };
 
-export function Modal({
-  visible,
-  onClose,
-  className,
-  children: element,
-  transTime = 300,
-  transClass = TransitionType.FadeIn,
-}: Props) {
+export function Modal(props: Props) {
+  const {
+    visible,
+    onClose,
+    className,
+    transTime = 300,
+    transClass = TransitionType.FadeIn,
+  } = props;
+
   const show = useDelayShow(visible, transTime);
 
   return renderModal(
@@ -58,11 +59,11 @@ export function Modal({
           style={{ animationDuration: floor(transTime / 1000, 2) + 's' }}
           classList={{
             ['wui-modal-wrap']: true,
-            [transClass]: true,
+            [transClass as string]: true,
             hide: !visible(),
           }}
         >
-          {element}
+          {props.children}
         </View>
       </View>
     </Show>,

@@ -19,10 +19,12 @@
       width: 100%;
       display: flex;
       justify-content: center;
+      z-index: 1;
       text {
         &:not(:last-child) {
           margin-right: 8px * 2;
         }
+        visibility: visible;
         display: inline-block;
         width: 8px * 2;
         height: 8px * 2;
