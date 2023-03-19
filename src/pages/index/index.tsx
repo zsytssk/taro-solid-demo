@@ -1,6 +1,12 @@
-import { Button, View } from '@tarojs/components';
+import { Block, Button, Input, View } from '@tarojs/components';
 import Taro from '@tarojs/taro';
-import { createMemo, createSignal, getOwner } from 'solid-js';
+import {
+  createEffect,
+  createMemo,
+  createRenderEffect,
+  createSignal,
+  getOwner,
+} from 'solid-js';
 import { SwiperBottom } from './components/swiperBottom';
 import SwiperTop from './components/swiperTop';
 
@@ -14,6 +20,11 @@ export default function Index(props) {
   const [data, setData] = createSignal<Renovation>();
   const [visible, setVisible] = createSignal(false);
   const [spin, setSpin] = createSignal(true);
+  let ref;
+
+  createEffect(() => {
+    console.log(`test:>ref`, ref);
+  });
 
   console.log(`test:>page:>index`, getOwner());
 
@@ -30,34 +41,42 @@ export default function Index(props) {
   }, 1000);
 
   return (
-    <View class={styles.index}>
+    <View class={styles.index} ref={ref}>
       <Spin spin={spin}>
         <SwiperTop homeConfig={homeConfig} />
-        <Button
-          onClick={() => {
-            Taro.navigateTo({
-              url: '/pages/menu/index',
-            });
-          }}
-        >
-          goto menu
-        </Button>
-        <Button
-          onClick={() => {
-            Taro.navigateTo({
-              url: '/pages/test/index',
-            });
-          }}
-        >
-          goto test
-        </Button>
-        <Button
-          onClick={() => {
-            setVisible(true);
-          }}
-        >
-          showModal
-        </Button>
+        <Block>
+          <Button
+            onClick={() => {
+              Taro.navigateTo({
+                url: '/pages/menu/index',
+              });
+            }}
+          >
+            goto menu
+          </Button>
+
+          <Input
+            onInput={e => {
+              console.log(`test:>`, (e.target as any).value);
+            }}
+          />
+          <Button
+            onClick={() => {
+              Taro.navigateTo({
+                url: '/pages/test/index',
+              });
+            }}
+          >
+            goto test
+          </Button>
+          <Button
+            onClick={() => {
+              setVisible(true);
+            }}
+          >
+            showModal
+          </Button>
+        </Block>
         <SwiperBottom homeConfig={homeConfig} />
       </Spin>
       <Modal

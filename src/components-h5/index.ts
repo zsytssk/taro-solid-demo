@@ -26,11 +26,10 @@ export const Checkbox = createComponent('taro-checkbox-core');
 export const CheckboxGroup = createComponent('taro-checkbox-group-core');
 export const Editor = createComponent('taro-editor-core');
 export const Form = createComponent('taro-form-core');
-
+export { default as Input } from './input';
 export const KeyboardAccessory = createComponent(
   'taro-keyboard-accessory-core',
 );
-
 export const Label = createComponent('taro-label-core');
 export const Picker = createComponent('taro-picker-core');
 export const PickerView = createComponent('taro-picker-view-core');
@@ -74,4 +73,6 @@ export const NavigationBar = createComponent('taro-navigation-bar-core');
 // 页面属性配置节点
 export const PageMeta = createComponent('taro-page-meta-core');
 
+// 其他
+export const Block = createComponent('taro-block-core');
 export const CustomWrapper = createComponent('taro-custom-wrapper-core');

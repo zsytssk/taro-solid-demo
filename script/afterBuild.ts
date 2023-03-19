@@ -2,7 +2,7 @@ const copyPrivateConfig = require('./task/copyPrivateConfig');
 const setDefaultPage = require('./task/setDefaultPage');
 
 module.exports = async function afterBuild(ctx) {
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'development' && process.env.TARO_ENV !== 'h5') {
     await setDefaultPage(ctx.paths.outputPath);
   }
 
