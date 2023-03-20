@@ -1,20 +1,15 @@
-import { Block, Button, Input, View } from '@tarojs/components';
+import { Button, Input, View } from '@tarojs/components';
 import Taro from '@tarojs/taro';
-import {
-  createEffect,
-  createMemo,
-  createRenderEffect,
-  createSignal,
-  getOwner,
-} from 'solid-js';
+import { createEffect, createMemo, createSignal, getOwner } from 'solid-js';
 import { SwiperBottom } from './components/swiperBottom';
 import SwiperTop from './components/swiperTop';
 
 import { ModalManager } from '@/wui/components/Modal';
 import { Modal } from '@/wui/components/Modal/Modal';
+import { Spin } from '@/wui/components/Spin/Spin';
 import styles from './index.module.less';
 import { Renovation, requestData } from './testData';
-import { Spin } from '@/wui/components/Spin/Spin';
+import { Center } from './components/center';
 
 export default function Index(props) {
   const [data, setData] = createSignal<Renovation>();
@@ -44,41 +39,17 @@ export default function Index(props) {
     <View class={styles.index} ref={ref}>
       <Spin spin={spin}>
         <SwiperTop homeConfig={homeConfig} />
-        <Block>
-          <Button
-            onClick={() => {
-              Taro.navigateTo({
-                url: '/pages/menu/index',
-              });
-            }}
-          >
-            goto menu
-          </Button>
-
-          <Input
-            onInput={e => {
-              console.log(`test:>`, (e.target as any).value);
-            }}
-          />
-          <Button
-            onClick={() => {
-              Taro.navigateTo({
-                url: '/pages/test/index',
-              });
-            }}
-          >
-            goto test
-          </Button>
-          <Button
-            onClick={() => {
-              setVisible(true);
-            }}
-          >
-            showModal
-          </Button>
-        </Block>
+        <Center />
+        <Button
+          onClick={() => {
+            setVisible(true);
+          }}
+        >
+          showModal
+        </Button>
         <SwiperBottom homeConfig={homeConfig} />
       </Spin>
+
       <Modal
         visible={visible}
         onClose={() => setVisible(false)}
