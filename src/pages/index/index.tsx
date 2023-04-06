@@ -1,5 +1,4 @@
-import { Button, Input, View } from '@tarojs/components';
-import Taro from '@tarojs/taro';
+import { Button, View } from '@tarojs/components';
 import { createEffect, createMemo, createSignal, getOwner } from 'solid-js';
 import { SwiperBottom } from './components/swiperBottom';
 import SwiperTop from './components/swiperTop';
@@ -7,9 +6,9 @@ import SwiperTop from './components/swiperTop';
 import { ModalManager } from '@/wui/components/Modal';
 import { Modal } from '@/wui/components/Modal/Modal';
 import { Spin } from '@/wui/components/Spin/Spin';
+import { Center } from './components/center';
 import styles from './index.module.less';
 import { Renovation, requestData } from './testData';
-import { Center } from './components/center';
 
 export default function Index(props) {
   const [data, setData] = createSignal<Renovation>();
@@ -36,7 +35,7 @@ export default function Index(props) {
   }, 1000);
 
   return (
-    <View class={styles.index} ref={ref}>
+    <View class={styles.index} ref={ref} style={{ background: 'red' }}>
       <Spin spin={spin}>
         <SwiperTop homeConfig={homeConfig} />
         <Center />

@@ -51,16 +51,14 @@ declare module '@tarojs/components' {
     CustomWrapperProps,
   } from '@tarojs/components';
 
-  type Props<T> =
-    | Omit<T, 'ref' | 'className' | 'children'>
-    | {
-        /** class 名 */
-        class?: string;
-        /** 子元素 */
-        children?: JSXElement;
-        classList?: { [key: string]: boolean };
-        ref?: JSXElement | ((node: JSXElement) => void);
-      };
+  type Props<T> = Omit<T, 'ref' | 'className' | 'children'> & {
+    /** class 名 */
+    class?: string;
+    /** 子元素 */
+    children?: JSXElement;
+    classList?: { [key: string]: boolean };
+    ref?: JSXElement | ((node: JSXElement) => void);
+  };
   type Components<T> = (props: Props<T>) => JSXElement;
 
   /** View元素 */
