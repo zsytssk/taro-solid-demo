@@ -1,4 +1,4 @@
-import { h } from '@tarojs/plugin-framework-react/dist/runtime';
+import { h } from '@tarojs/solid';
 
 export function createComponent(name: string) {
   return (props?) => {
