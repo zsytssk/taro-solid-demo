@@ -21,4 +21,4 @@ export {
   useRouter,
   useTabItemTap,
   useScope,
-} from '@tarojs/plugin-framework-react/dist/runtime';
+} from '@tarojs/plugin-framework-solid/dist/runtime';

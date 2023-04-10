@@ -18,7 +18,7 @@ module.exports = {
     [
       'babel-preset-solid',
       {
-        moduleName: '@tarojs/plugin-framework-react/dist/runtime',
+        moduleName: '@tarojs/solid',
         generate: 'universal',
       },
     ],

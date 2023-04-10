@@ -9,19 +9,19 @@ export default function App(props) {
   global.doc = document;
   global.getPageInstance = getPageInstance;
 
-  useLaunch(options => {
+  useLaunch((options) => {
     console.log(`test:>hooks:>useLaunch`, options);
   });
 
-  useDidShow(options => {
+  useDidShow((options) => {
     console.log(`test:>hooks:>useDidShow`, options);
   });
 
-  usePageNotFound(options => {
+  usePageNotFound((options) => {
     console.log(`test:>hooks:>usePageNotFound`, options);
   });
 
-  useError(options => {
+  useError((options) => {
     console.log(`test:>hooks:>useError`, options);
   });
 
